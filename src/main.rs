@@ -7,7 +7,7 @@ fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_systems(Startup, (spawn_ball, spawn_camera))
-        .add_systems(Update, project_positions)
+        .add_systems(Update, (move_ball, project_positions.after(move_ball)))
         .run();
 }
 
@@ -32,6 +32,12 @@ fn spawn_ball(
             ..default()
         },
     ));
+}
+
+fn move_ball(mut ball: Query<&mut Position, With<Ball>>) {
+    if let Ok(mut position) = ball.get_single_mut() {
+        position.0.x += 1.0;
+    }
 }
 
 fn project_positions(mut positionables: Query<(&mut Transform, &Position)>) {
