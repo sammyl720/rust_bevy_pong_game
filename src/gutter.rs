@@ -3,7 +3,7 @@ use crate::shape::Shape;
 use bevy::prelude::*;
 use bevy::sprite::MaterialMesh2dBundle;
 
-const GUTTER_HEIGHT: f32 = 20.;
+pub const GUTTER_HEIGHT: f32 = 20.;
 
 #[derive(Component)]
 pub struct Gutter;

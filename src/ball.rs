@@ -61,7 +61,7 @@ fn spawn_ball(
     let material_handle = materials.add(color);
 
     commands.spawn((
-        BallBundle::new(10., 10.),
+        BallBundle::new(3., 3.),
         MaterialMesh2dBundle {
             mesh: mesh_handle.into(),
             material: material_handle,

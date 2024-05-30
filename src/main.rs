@@ -4,9 +4,11 @@ use gutter::*;
 use paddle::*;
 
 mod ball;
+mod bot;
 mod collision;
 mod gutter;
 mod paddle;
+mod player;
 mod position;
 mod shape;
 mod velocity;
