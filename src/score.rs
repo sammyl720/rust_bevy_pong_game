@@ -12,8 +12,8 @@ pub struct Scored(Scorer);
 
 #[derive(Resource, Default)]
 pub struct Score {
-    player: u32,
-    bot: u32,
+    pub player: u32,
+    pub bot: u32,
 }
 
 pub struct ScorePlugin;
@@ -71,6 +71,4 @@ fn update_score(mut score: ResMut<Score>, mut events: EventReader<Scored>) {
             Scorer::Player => score.player += 1,
         }
     }
-
-    println!("Score: {} - {}", score.player, score.bot);
 }
