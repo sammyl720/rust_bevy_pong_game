@@ -8,6 +8,7 @@ use bevy::prelude::*;
 use bevy::sprite::MaterialMesh2dBundle;
 
 const BALL_SIZE: f32 = 5.0;
+pub const BALL_SPEED: f32 = 3.0;
 
 #[derive(Component)]
 pub struct Ball;
@@ -61,7 +62,7 @@ fn spawn_ball(
     let material_handle = materials.add(color);
 
     commands.spawn((
-        BallBundle::new(3., 3.),
+        BallBundle::new(BALL_SPEED, BALL_SPEED),
         MaterialMesh2dBundle {
             mesh: mesh_handle.into(),
             material: material_handle,

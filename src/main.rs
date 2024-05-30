@@ -2,6 +2,7 @@ use ball::*;
 use bevy::prelude::*;
 use gutter::*;
 use paddle::*;
+use score::ScorePlugin;
 
 mod ball;
 mod bot;
@@ -10,12 +11,14 @@ mod gutter;
 mod paddle;
 mod player;
 mod position;
+mod score;
 mod shape;
 mod velocity;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
+        .add_plugins(ScorePlugin)
         .add_plugins(BallPlugin)
         .add_plugins(PaddlePlugin)
         .add_plugins(GutterPlugin)
