@@ -1,10 +1,8 @@
+use crate::position::Position;
 use bevy::prelude::*;
 use bevy::sprite::MaterialMesh2dBundle;
 
 const BALL_SIZE: f32 = 5.0;
-
-#[derive(Component)]
-pub struct Position(pub Vec2);
 
 #[derive(Component)]
 pub struct Ball;
