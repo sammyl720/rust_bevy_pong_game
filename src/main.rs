@@ -1,9 +1,11 @@
 use ball::*;
 use bevy::prelude::*;
+use gutter::*;
 use paddle::*;
 
 mod ball;
 mod collision;
+mod gutter;
 mod paddle;
 mod position;
 mod shape;
@@ -14,6 +16,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_plugins(BallPlugin)
         .add_plugins(PaddlePlugin)
+        .add_plugins(GutterPlugin)
         .add_systems(Startup, spawn_camera)
         .run();
 }
