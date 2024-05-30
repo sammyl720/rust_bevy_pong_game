@@ -1,4 +1,4 @@
-use bevy::{prelude::*, sprite::MaterialMesh2dBundle};
+use bevy::{prelude::*, render::view::window, sprite::MaterialMesh2dBundle};
 
 use crate::{position::*, shape::Shape};
 
@@ -39,24 +39,41 @@ fn spawn_paddles(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<ColorMaterial>>,
+    window: Query<&Window>,
 ) {
     println!("Spawning paddles ...");
 
-    //update?
-    let mesh = Mesh::from(Rectangle::new(PADDLE_WIDTH, PADDLE_HEIGHT));
-    let material = ColorMaterial::from(Color::rgb(0., 1., 0.));
+    if let Ok(window) = window.get_single() {
+        let window_width = window.resolution.width();
+        let padding = 50.;
+        let right_paddle_x = window_width / 2. - padding;
+        let left_paddle_x = -window_width / 2. + padding;
 
-    let mesh_handle = meshes.add(mesh);
-    let material_handle = materials.add(material);
+        //update?
+        let mesh = Mesh::from(Rectangle::new(PADDLE_WIDTH, PADDLE_HEIGHT));
 
-    commands.spawn((
-        MaterialMesh2dBundle {
-            material: material_handle,
-            mesh: mesh_handle.into(),
-            ..default()
-        },
-        PaddleBundle::new(120., -25.),
-    ));
+        let mesh_handle = meshes.add(mesh);
+
+        commands.spawn((
+            // player
+            MaterialMesh2dBundle {
+                material: materials.add(ColorMaterial::from(Color::rgb(0., 1., 0.))),
+                mesh: mesh_handle.clone().into(),
+                ..default()
+            },
+            PaddleBundle::new(right_paddle_x, 0.),
+        ));
+
+        commands.spawn((
+            // ai
+            MaterialMesh2dBundle {
+                material: materials.add(ColorMaterial::from(Color::rgb(0., 0., 1.))),
+                mesh: mesh_handle.into(),
+                ..default()
+            },
+            PaddleBundle::new(left_paddle_x, 0.),
+        ));
+    }
 }
 
 fn project_positions(mut positionables: Query<(&mut Transform, &Position)>) {
