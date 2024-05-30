@@ -1,5 +1,6 @@
 use ball::*;
 use bevy::prelude::*;
+use bot::BotPlugin;
 use gutter::*;
 use paddle::*;
 use score::ScorePlugin;
@@ -25,6 +26,7 @@ fn main() {
         .add_plugins(PaddlePlugin)
         .add_plugins(GutterPlugin)
         .add_plugins(ScoreBoardPlugin)
+        .add_plugins(BotPlugin)
         .add_systems(Startup, spawn_camera)
         .run();
 }

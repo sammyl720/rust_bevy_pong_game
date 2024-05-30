@@ -4,7 +4,7 @@ use crate::{
     bot::Bot, player::Player, position::*, shape::Shape, velocity::Velocity, GUTTER_HEIGHT,
 };
 
-const PADDLE_SPEED: f32 = 1.;
+pub const PADDLE_SPEED: f32 = 1.;
 const PADDLE_WIDTH: f32 = 10.;
 const PADDLE_HEIGHT: f32 = 50.;
 
